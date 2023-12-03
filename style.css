@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #1D1D23;
+    color: white;
+}
+#mainContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 30px;
+    margin-top: 50px;
+    
+}
+
+.timer-input{
+    width: 457px;
+    display: flex;
+    column-gap: 30px;
+    background-color: #34344A;    
+height: 67px;
+justify-content: center;
+align-items: center;
+padding: 20px;
+border-radius: 20px;
+}
+.name , .time {
+    background-color: #34344A;
+}
+input{
+    background-color: transparent;
+    height: 28px;
+}
+
+.time{
+    display: flex;
+    column-gap: 50px;
+}
+
+.time > input {
+    border: transparent;
+    width: 30px;
+}
+#heading{
+    font-weight: 700;
+    color: white;
+   
+}
+button{
+    width: 68px;
+height: 33px;
+border-radius: 26px;
+background: #F0F757;
+color: black;
+}
+p{
+    background-color: transparent;
+}
+.active{
+    column-gap: 80px;
+}
+#activeTimer{
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+}
+#currentTimer{
+    width: 230px;
+height: 50px;
+border-radius: 50px;
+background: #39393E;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+span{
+    background-color: transparent !important;
+}
