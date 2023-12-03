@@ -1,11 +1,11 @@
 let timers = [];
 const activeTimersContainer = document.getElementById("activeTimer");
-if(activeTimersContainer.innerHTML == ""){
+if (activeTimersContainer.innerHTML == "") {
   const timerElement = document.createElement("span");
-    timerElement.classList.add("timer-input");
-    timerElement.innerText = "You have no timers currently!";
-    activeTimersContainer.appendChild(timerElement);
-}  
+  timerElement.classList.add("timer-input");
+  timerElement.innerText = "You have no timers currently!";
+  activeTimersContainer.appendChild(timerElement);
+}
 function startNewTime() {
   const hours = parseInt(document.getElementById("hours").value || 0);
   const minutes = parseInt(document.getElementById("minutes").value || 0);
@@ -23,6 +23,7 @@ function startNewTime() {
       //if time comes to 0 then it should stop and play song
       clearInterval(timerId); // stop the timer at 0
       handleTimerEnd(timerId); // for plaing audio
+      newui(timerId);
     } else {
       // decrement the time and display on screen
       totalTimeInSecond--;
@@ -33,10 +34,29 @@ function startNewTime() {
   timers.push({
     id: timerId,
     totalTime: totalTimeInSecond,
-    isAudio:false,
+    isAudio: false,
   });
 
   updateActiveTimerdisplay();
+}
+function newui(timerId) {
+  const activeTimersContainer = document.getElementById("activeTimer");
+  activeTimersContainer.innerHTML = "";
+
+  timers.forEach((timer) => {
+    const timerElement = document.createElement("div");
+    timerElement.classList.add("timer-input");
+    timerElement.id = "up";
+
+    timerElement.innerHTML = `
+           <div id ="timerup">Timers Is Up </div>         
+           
+            <button class="upbtn" onclick="stopTimer(${timer.id})">Delete</button>
+          </div>
+    
+        `;
+    activeTimersContainer.appendChild(timerElement);
+  });
 }
 
 function updateActiveTimerdisplay() {
@@ -71,8 +91,6 @@ function updateActiveTimerdisplay() {
   });
 }
 
-
-
 function updateTimeDisplay(timerId, totalTimeInSecond) {
   const timerIndex = timers.findIndex((timer) => timer.id === timerId);
   timers[timerIndex].totalTime = totalTimeInSecond;
@@ -80,11 +98,10 @@ function updateTimeDisplay(timerId, totalTimeInSecond) {
 }
 
 function stopTimer(timerId) {
+  const timerIndex = timers.findIndex((timer) => timer.id === timerId);
+  const isAudioPlaying = timers[timerIndex].isAudio;
 
-const timerIndex = timers.findIndex((timer) => timer.id === timerId);
-  const isAudioPlaying =  timers[timerIndex].isAudio ;
-
-  if(isAudioPlaying){
+  if (isAudioPlaying) {
     timers[timerIndex].audio.pause();
     timers[timerIndex].audio.currentTime = 0;
   }
@@ -94,12 +111,10 @@ const timerIndex = timers.findIndex((timer) => timer.id === timerId);
 }
 
 function handleTimerEnd(timerId) {
-    const timerIndex = timers.findIndex((timer) => timer.id === timerId);
-    
-  const timerElement = document.getElementById("timerEndDisplay");
-  // Update the timer end display according to Figma design
+  const timerIndex = timers.findIndex((timer) => timer.id === timerId);
 
-  // Play audio alert (replace 'audio.mp3' with your audio file)
+  const timerElement = document.getElementById("timerEndDisplay");
+  
   const audio = new Audio("mixkit-battleship-alarm-1001.wav");
   audio.play();
 
@@ -107,6 +122,3 @@ function handleTimerEnd(timerId) {
   timers[timerIndex].audio = audio;
   timers[timerIndex].isAudio = true;
 }
-// stopAudio(timerId,audio){
-//     timers = timers.filter(timer => timer.id != timerId);
-// }
