@@ -118,7 +118,7 @@ function handleTimerEnd(timerId) {
   const audio = new Audio("mixkit-battleship-alarm-1001.wav");
   audio.play();
 
-  //to delete and stop audio
+  //adding audio and audio playing to array
   timers[timerIndex].audio = audio;
   timers[timerIndex].isAudio = true;
 }
