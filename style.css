@@ -37,6 +37,7 @@ input {
 .time {
   display: flex;
   column-gap: 50px;
+  
 }
 
 .time > input {
@@ -47,6 +48,7 @@ input {
 #heading {
   font-weight: 700;
   color: white;
+  font-size: 33px;
 }
 button {
   width: 68px;
